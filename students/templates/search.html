@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+<style>
+    table, th, td {
+      border:1px solid black;
+    }
+    </style>
+<body>
+{% block content %}
+    <div class="container">
+      <h5> Kết quả tìm kiếm cho từ khóa "{{search}}"</h5><br/>
+        <div class="row">                
+        <div id="content" class="col-sm-9">      
+         <h1>List Student</h1>
+         <div class="table-responsive">
+              <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>number roll</th>
+                        <th>email</th>
+                        <th>phone number</th>
+                        <th>action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in key %}
+                    <tr>
+        
+                      <td>{{ student.name }}</td>
+                      <td>{{ student.roll_number }}</td>
+                      <td>{{ student.email }}</td>
+                      <td>{{ student.phone}}</td>
+                      <td> <a href="{% url 'edit_student' student.id %}"> edit</a> | <a onclick=" return confirm('Bạn chắc chắn muốn xóa ?')" href="{% url 'delete_student' student.id %}"> delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+          </div>
+      </div>
+    </div>
+{% endblock content %}
+</body>
+</html>
